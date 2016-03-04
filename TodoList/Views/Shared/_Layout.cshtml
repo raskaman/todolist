@@ -11,11 +11,17 @@
 
 </head>
 <body>
-    <div class="titlediv">
-        <h1>
-           PAM - Do it together!!
-            </h1>
-    </div>
-    @RenderBody()
+<div class="titlediv">
+    <h1>
+        PAM - Quick Task Reporting!!
+    </h1>
+</div>
+
+<nav>
+    @Html.ActionLink("Tasks", "Index", "Home")
+    @Html.ActionLink("Users", "Users", "Home")
+</nav>
+
+@RenderBody()
 </body>
 </html>
