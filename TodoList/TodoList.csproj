@@ -142,6 +142,7 @@
     </Compile>
     <Compile Include="Hubs\Tasks.cs" />
     <Compile Include="Hubs\Users.cs" />
+    <Compile Include="Models\Status.cs" />
     <Compile Include="Models\TodoListContext.cs" />
     <Compile Include="Models\Task.cs" />
     <Compile Include="Models\User.cs" />

@@ -21,8 +21,8 @@ namespace TodoList.Hubs
                     task.title = newTask.title;
                     task.description = newTask.description;
                     task.status = newTask.status;
-                    task.user = newTask.user;
-                    task.completed = newTask.completed;
+                    task.createdBy = newTask.createdBy;
+                    task.assignedTo = newTask.assignedTo;
                     task.lastUpdated = DateTime.Now;
                     context.Tasks.Add(task);
                     context.SaveChanges();
@@ -60,8 +60,8 @@ namespace TodoList.Hubs
                         oldTask.title = updatedTask.title;
                         oldTask.description = updatedTask.description;
                         oldTask.status = updatedTask.status;
-                        oldTask.completed = updatedTask.completed;
-                        oldTask.user = updatedTask.user;
+                        oldTask.createdBy = updatedTask.createdBy;
+                        oldTask.assignedTo = updatedTask.assignedTo;
                         oldTask.lastUpdated = DateTime.Now;
                         context.SaveChanges();
                         Clients.All.taskUpdated(oldTask);

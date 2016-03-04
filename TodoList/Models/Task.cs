@@ -20,21 +20,15 @@ namespace TodoList.Models
         [Required]
         public Status status { get; set; }
 
-        public int user { get; set; }
+        public int createdBy { get; set; }
 
-        public bool completed { get; set; }
+        public int assignedTo { get; set; }
+
         public DateTime lastUpdated { get; set; }
 
         public int created_by { get; set; }
 
         public int assing_to { get; set; }
 
-    }
-
-    public enum Status
-    {
-        ToDo = 1,
-        InProgress = 2,
-        Completed = 3
     }
 }

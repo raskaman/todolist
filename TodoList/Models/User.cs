@@ -8,10 +8,6 @@ namespace TodoList.Models
         public int userId { get; set; }
 
         [Required]
-        [MinLength(5)]
-        public string userName { get; set; }
-
-        [Required]
         public string firstName { get; set; }
 
         [Required]

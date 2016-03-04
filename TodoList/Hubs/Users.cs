@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using Microsoft.AspNet.SignalR;
 using TodoList.Models;
 
@@ -19,7 +17,6 @@ namespace TodoList.Hubs
                 using (var context = new TodoListContext())
                 {
                     var user = context.Users.Create();
-                    user.userName = newUser.userName;
                     user.firstName = newUser.firstName;
                     user.lastName = newUser.lastName;
                     user.active = newUser.active;
@@ -31,7 +28,7 @@ namespace TodoList.Hubs
             }
             catch (Exception ex)
             {
-                Clients.Caller.reportError("Unable to create User");
+                Clients.Caller.reportError("Unable to create User: " + ex.Message);
                 return false;
             }
 
@@ -51,7 +48,6 @@ namespace TodoList.Hubs
                         return false;
                     else
                     {
-                        oldUser.userName = updatedUser.userName;
                         oldUser.firstName = updatedUser.firstName;
                         oldUser.lastName = updatedUser.lastName;
                         oldUser.active = updatedUser.active;
@@ -63,7 +59,7 @@ namespace TodoList.Hubs
                 }
                 catch (Exception ex)
                 {
-                    Clients.Caller.reportError("Unable to update User");
+                    Clients.Caller.reportError("Unable to update User: " + ex.Message);
                     return false;
                 }
             }
