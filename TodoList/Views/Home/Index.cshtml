@@ -130,8 +130,9 @@
 <div id="error" class="validation-summary-errors"></div>
 <h2> Add Task</h2>
 <form data-bind="submit: addTask">
-<input data-bind="value: newTaskText" class="ui-corner-all" placeholder="What needs to be done?" />
-<input class="ui-button" type="submit" value="Add Task" />
+    <input data-bind="value: newTaskText" class="ui-corner-all" placeholder="What needs to be done?" />
+    <input class="ui-button" type="submit" value="Add Task"/>
+
 <h2>Our Tasks</h2>
 <br />
 You have <b data-bind="text: incompleteTasks().length">&nbsp;</b> incomplete task(s)
