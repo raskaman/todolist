@@ -126,6 +126,7 @@
   <ItemGroup>
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
+    <Content Include="public\css\main.css" />
     <Content Include="Scripts\jquery-2.2.1.js" />
     <Content Include="Scripts\jquery-2.2.1.min.js" />
     <Content Include="Scripts\jquery.signalR-2.2.0.js" />
@@ -156,6 +157,10 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Scripts\jquery-2.2.1.min.map" />
+    <Content Include="node_scripts\build-css" />
+    <Content Include="node_scripts\watch-css" />
+    <None Include="Properties\PublishProfiles\publish.pubxml" />
+    <Content Include="public\scss\main.scss" />
     <Content Include="Views\Home\Users.cshtml" />
     <None Include="Properties\PublishProfiles\LocaIIS.pubxml" />
     <None Include="Web.Debug.config">
@@ -202,7 +207,7 @@
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
   </Target>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
