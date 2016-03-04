@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNet.SignalR;
 using System;
-using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
-using System.Web;
 using TodoList.Models;
 
 namespace TodoList.Hubs
@@ -20,6 +19,9 @@ namespace TodoList.Hubs
                 {
                     var task = context.Tasks.Create();
                     task.title = newTask.title;
+                    task.description = newTask.description;
+                    task.status = newTask.status;
+                    task.user = newTask.user;
                     task.completed = newTask.completed;
                     task.lastUpdated = DateTime.Now;
                     context.Tasks.Add(task);
@@ -27,6 +29,11 @@ namespace TodoList.Hubs
                     Clients.All.taskAdded(task);
                     return true;
                 }
+            }
+            catch (DbEntityValidationException ex)
+            {
+                Clients.Caller.reportError("Unable to create task. Make sure title length is between 10 and 140");
+                return false;
             }
             catch (Exception ex)
             {
@@ -51,7 +58,10 @@ namespace TodoList.Hubs
                     else
                     {
                         oldTask.title = updatedTask.title;
+                        oldTask.description = updatedTask.description;
+                        oldTask.status = updatedTask.status;
                         oldTask.completed = updatedTask.completed;
+                        oldTask.user = updatedTask.user;
                         oldTask.lastUpdated = DateTime.Now;
                         context.SaveChanges();
                         Clients.All.taskUpdated(oldTask);
