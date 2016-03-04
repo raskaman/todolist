@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
+﻿using System.Data.Entity;
 using System.Web.Mvc;
 using System.Web.Routing;
 using TodoList.Models;
@@ -15,7 +11,9 @@ namespace TodoList
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+#if (DEBUG)
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<TodoListContext>());
+#endif
         }
     }
 }

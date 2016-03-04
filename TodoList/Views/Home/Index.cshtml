@@ -159,6 +159,7 @@
         <option value="3">Completed</option>
     </select>
     <select class="ui-corner-all" data-bind="value: user">
+        <option value="0">Unassingned</option>
         @foreach (var user in Model)
         {
             <option value="@user.userId">@user.firstName @user.lastName</option>
@@ -181,6 +182,7 @@ You have <b data-bind="text: incompleteTasks().length">&nbsp;</b> incomplete tas
             <option value="3">Completed</option>
         </select>
         <select class="ui-corner-all" data-bind="value: user">
+            <option value="0">Unassingned</option>
             @foreach (var user in Model)
             {
                 <option value="@user.userId">@user.firstName @user.lastName</option>

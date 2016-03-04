@@ -123,8 +123,8 @@
                 }
 
                 //Gets the inactive users
-                this.inactiveUsers = ko.dependentObservable(function () {
-                    return ko.utils.arrayFilter(this.users(), function (user) { return !user.active() });
+                this.activeUsers = ko.dependentObservable(function () {
+                    return ko.utils.arrayFilter(this.users(), function (user) { return user.active() });
                 }, this);
 
             }
@@ -146,19 +146,18 @@
     <input class="ui-button" type="submit" value="Add User" />
 </form>
 
-<h2>Our Users</h2>
+<h2>Users</h2>
 <br />
-    You have <b data-bind="text: inactiveUsers().length">&nbsp;</b> inactive user(s)
+    You have <b data-bind="text: activeUsers().length">&nbsp;</b> inactive user(s)
 
 <ul data-bind="template: { name: 'userTemplate', foreach: users }, visible: users().length > 0"></ul>
 
 <script type="text/html" id="userTemplate">
-    <li data-bind="enable: !active()">
-        <input type="checkbox" data-bind="checked: active"/>
-        <input class="ui-corner-all" data-bind="value: userName"/>
-        <input class="ui-corner-all" data-bind="value: firstName"/>
+    <li data-bind="css: {disabled : !active() }">
+        <input type="checkbox" data-bind="checked: active" />
+        <input class="ui-corner-all" data-bind="value: userName" />
+        <input class="ui-corner-all" data-bind="value: firstName" />
         <input class="ui-corner-all" data-bind="value: lastName" />
         <input class="ui-button" type="button" href="#" data-bind="click: remove" value="x" />
     </li>
 </script>
-<span data-bind="visible: inactiveUsers().length == 0">All users are complete</span>
