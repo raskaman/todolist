@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<TodoList.Models.User>
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -12,10 +13,13 @@
             //View Models
 
             //Task View Model
-            function taskViewModel(id, title, completed, ownerViewModel) {
+            function taskViewModel(id, title, description, status, user, completed, ownerViewModel) {
                 this.taskId = id;
                 this.title = ko.observable(title);
                 this.completed = ko.observable(completed);
+                this.description = ko.observable(description);
+                this.status = ko.observable(status);
+                this.user = ko.observable(user);
                 this.remove = function () { ownerViewModel.removeTask(this.taskId) }
                 this.notification = function (b) { notify = b }
 
@@ -29,6 +33,18 @@
                     ownerViewModel.updateTask(ko.toJS(self));
                 });
 
+                this.description.subscribe(function (newValue) {
+                    ownerViewModel.updateTask(ko.toJS(self));
+                });
+
+                this.status.subscribe(function (newValue) {
+                    ownerViewModel.updateTask(ko.toJS(self));
+                });
+
+                this.user.subscribe(function (newValue) {
+                    ownerViewModel.updateTask(ko.toJS(self));
+                });
+
             }
 
             //Task List View Model
@@ -39,7 +55,9 @@
                 this.hub = $.connection.tasks;
                 this.tasks = ko.observableArray([]);
                 this.newTaskText = ko.observable();
-
+                this.description = ko.observable();
+                this.status = ko.observable();
+                this.user = ko.observable();
                 var tasks = this.tasks;
                 var self = this;
                 var notify = true;
@@ -54,8 +72,8 @@
                 this.hub.client.taskAll = function (allTasks) {
 
                     var mappedTasks = $.map(allTasks, function (item) {
-                        return new taskViewModel(item.taskId, item.title,
-                                 item.completed, self)
+                        return new taskViewModel(item.taskId, item.title, item.description, item.status, item.user,
+                            item.completed, self);
                     });
 
                     tasks(mappedTasks);
@@ -66,6 +84,9 @@
                     notify = false;
                     task.title(t.title);
                     task.completed(t.completed);
+                    task.description(t.description);
+                    task.status(t.status);
+                    task.user(t.user);
                     notify = true;
                 };
 
@@ -77,7 +98,7 @@
                 }
 
                 this.hub.client.taskAdded = function (t) {
-                    tasks.push(new taskViewModel(t.taskId, t.title, t.completed, self));
+                    tasks.push(new taskViewModel(t.taskId, t.title, t.description, t.status, t.user, t.completed, self));
                 };
 
                 this.hub.client.taskRemoved = function (id) {
@@ -89,9 +110,9 @@
 
                 //To create a task
                 this.addTask = function () {
-                    var t = { "title": this.newTaskText(), "completed": false };
+                    var t = { "title": this.newTaskText(), "completed": false, "description": this.description(), "status": this.status(), "user":this.user() };
                     this.hub.server.add(t).done(function () {
-                        console.log('Success!')
+                        console.log('Success!');
                     }).fail(function (e) {
                         console.warn(e);
                     });
@@ -131,17 +152,40 @@
 <h2> Add Task</h2>
 <form data-bind="submit: addTask">
     <input data-bind="value: newTaskText" class="ui-corner-all" placeholder="What needs to be done?" />
-    <input class="ui-button" type="submit" value="Add Task"/>
-
+    <input data-bind="value: description" class="ui-corner-all" placeholder="Add Description" />
+    <select class="ui-corner-all" data-bind="value: status">
+        <option value="1">To Do</option>
+        <option value="2">In Progress</option>
+        <option value="3">Completed</option>
+    </select>
+    <select class="ui-corner-all" data-bind="value: user">
+        @foreach (var user in Model)
+        {
+            <option value="@user.userId">@user.firstName @user.lastName</option>
+        }
+    </select>
+    <input class="ui-button" type="submit" value="Add Task" />
+</form>
 <h2>Our Tasks</h2>
 <br />
 You have <b data-bind="text: incompleteTasks().length">&nbsp;</b> incomplete task(s)
-<ul data-bind="template: { name: 'taskTemplate', foreach: tasks }, visible: tasks().length > 0">
-</ul>
+<ul data-bind="template: { name: 'taskTemplate', foreach: tasks }, visible: tasks().length > 0"></ul>
 <script type="text/html" id="taskTemplate">
-    <li  style="list-style-image: url('/images/task.png')">
-        <input type="checkbox" data-bind="checked: completed" />
-        <input class="ui-corner-all" data-bind="value: title, enable: !completed()" />
+    <li style="list-style-image: url('/images/task.png')">
+        <input type="checkbox" data-bind="checked: completed"/>
+        <input class="ui-corner-all" data-bind="value: title, enable: !completed()"/>
+        <input class="ui-corner-all" data-bind="value: description, enable: !completed()"/>
+        <select class="ui-corner-all" data-bind="value: status">
+            <option value="1">To Do</option>
+            <option value="2">In Progress</option>
+            <option value="3">Completed</option>
+        </select>
+        <select class="ui-corner-all" data-bind="value: user">
+            @foreach (var user in Model)
+            {
+                <option value="@user.userId">@user.firstName @user.lastName</option>
+            }
+        </select>
         <input class="ui-button" type="button" href="#" data-bind="click: remove" value="x"></input>
     </li>
 </script>

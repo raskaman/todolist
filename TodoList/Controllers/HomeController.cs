@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
+using TodoList.Models;
 
 namespace TodoList.Controllers
 {
@@ -11,7 +9,11 @@ namespace TodoList.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            using (var context = new TodoListContext())
+            {
+                var users = context.Users.ToList();
+                return View(users);
+            }
         }
 
         public ActionResult Users()
