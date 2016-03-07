@@ -125,6 +125,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Images\task.gif" />
+    <Content Include="Images\task.png" />
     <Content Include="public\css\main.css" />
     <Content Include="public\js\libs\jquery-2.2.1.js" />
     <Content Include="public\js\libs\jquery-2.2.1.min.js" />
@@ -132,7 +134,11 @@
     <Content Include="public\js\libs\jquery.signalR-2.2.0.min.js" />
     <Content Include="public\js\libs\knockout-3.4.0.debug.js" />
     <Content Include="public\js\libs\knockout-3.4.0.js" />
-    <Content Include="Web.config" />
+    <Content Include="public\js\tasks.js" />
+    <Content Include="public\js\users.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -159,6 +165,7 @@
     <Content Include="public\js\libs\jquery-2.2.1.min.map" />
     <Content Include="node_scripts\build-css" />
     <Content Include="node_scripts\watch-css" />
+    <None Include="Properties\PublishProfiles\Prod.pubxml" />
     <None Include="Properties\PublishProfiles\publish.pubxml" />
     <Content Include="public\scss\main.scss" />
     <Content Include="Views\Home\Users.cshtml" />

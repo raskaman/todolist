@@ -13,30 +13,30 @@
 <h2> Add Task</h2>
 <form data-bind="submit: addTask">
     <div>
-        <span class="heading-title">Title</span>
-        <span class="heading-description">Description</span>
-        <span class="heading-createdBy">Created By</span>
-        <span class="heading-assignedTo">Assigned To</span>
-        <span class="heading-status">Status</span>
+        <span class="heading-title" style="width: 130px; display: inline-block;">Title</span>
+        <span class="heading-description" style="width: 230px; display: inline-block;">Description</span>
+        <span class="heading-createdBy" style="width: 130px; display: inline-block;">Created By</span>
+        <span class="heading-assignedTo" style="width: 130px; display: inline-block;">Assigned To</span>
+        <span class="heading-status" style="width: 130px; display: inline-block;">Status</span>
     </div>
 
-    <input class="task-title" data-bind="value: newTaskText" placeholder="Task Title" />
-    <input class="task-description" data-bind="value: description" placeholder="Description" />
-    <select class="task-createdBy" data-bind="value: createdBy">
+    <input class="task-title" style="width: 130px; display: inline-block;" data-bind="value: newTaskText" placeholder="Task Title" />
+    <input class="task-description" style="width: 230px; display: inline-block;" data-bind="value: description" placeholder="Description" />
+    <select class="task-createdBy" style="width: 130px; display: inline-block;" data-bind="value: createdBy">
         <option value="0">Unknown</option>
         @foreach (var user in Model)
         {
             <option value="@user.userId">@user.firstName @user.lastName</option>
         }
     </select>
-    <select class="task-assignedTo" data-bind="value: assignedTo">
+    <select class="task-assignedTo" style="width: 130px; display: inline-block;" data-bind="value: assignedTo">
         <option value="0">Unassingned</option>
         @foreach (var user in Model)
         {
             <option value="@user.userId">@user.firstName @user.lastName</option>
         }
     </select>
-    <select class="task-status" data-bind="value: status">
+    <select class="task-status" style="width: 130px; display: inline-block;" data-bind="value: status">
         <option value="1">To Do</option>
         <option value="2">In Progress</option>
         <option value="3">Done</option>
@@ -50,17 +50,17 @@ You have <b data-bind="text: incompleteTasks().length">&nbsp;</b> incomplete tas
 
 <ul class="tasks-list" data-bind="visible: tasks().length > 0">
     <li>
-        <span class="heading-title">Title</span>
-        <span class="heading-description">Description</span>
-        <span class="heading-createdBy">Created By</span>
-        <span class="heading-assignedTo">Assigned To</span>
-        <span class="heading-status">Status</span>
+        <span class="heading-title" style="width: 130px; display: inline-block;">Title</span>
+        <span class="heading-description" style="width: 230px; display: inline-block;">Description</span>
+        <span class="heading-createdBy" style="width: 130px; display: inline-block;">Created By</span>
+        <span class="heading-assignedTo" style="width: 130px; display: inline-block;">Assigned To</span>
+        <span class="heading-status" style="width: 130px; display: inline-block;">Status</span>
     </li>
     <!-- ko foreach: tasks -->
     <li style="list-style-image: url('/images/task.png')" data-bind="css: {enabled: status() != 3}">
-        <input class="task-title" data-bind="value: title" />
-        <input class="task-description" data-bind="value: description"/>
-        <select class="task-createdBy" data-bind="value: createdBy">
+        <input class="task-title" style="width: 130px; display: inline-block;" data-bind="value: title" />
+        <input class="task-description" style="width: 230px; display: inline-block;" data-bind="value: description" />
+        <select class="task-createdBy" style="width: 130px; display: inline-block;" data-bind="value: createdBy">
             <option value="0">Unknown</option>
             @foreach (var user in Model)
             {
@@ -68,7 +68,7 @@ You have <b data-bind="text: incompleteTasks().length">&nbsp;</b> incomplete tas
             }
         </select>
 
-        <select class="task-assignedTo" data-bind="value: assignedTo">
+        <select class="task-assignedTo" style="width: 130px; display: inline-block;" data-bind="value: assignedTo">
             <option value="0">Unassingned</option>
             @foreach (var user in Model)
             {
@@ -76,7 +76,7 @@ You have <b data-bind="text: incompleteTasks().length">&nbsp;</b> incomplete tas
             }
         </select>
 
-        <select class="task-status" data-bind="value: status">
+        <select class="task-status" style="width: 130px; display: inline-block;" data-bind="value: status">
             <option value="1">To Do</option>
             <option value="2">In Progress</option>
             <option value="3">Done</option>
