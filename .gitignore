@@ -234,3 +234,6 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+
+# Exclude configuration files
+Web.Release.config
