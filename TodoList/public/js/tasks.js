@@ -100,7 +100,7 @@
 
         //To create a task
         this.addTask = function () {
-            var t = { "title": this.newTaskText(), "description": this.description(), "status": this.status(), "createdBy": this.createdBy(), "assignedTo": this.assignedTo() };
+            var t = { "title": this.newTaskText(), "description": this.description(), "createdBy": this.createdBy(), "assignedTo": this.assignedTo(), "status": this.status() };
             this.hub.server.add(t).done(function () {
 
             }).fail(function (e) {
@@ -108,6 +108,11 @@
             });
 
             this.newTaskText("");
+            this.description("");
+            
+            this.createdBy(0);
+            this.assignedTo(0);
+            this.status(1);
         }
 
         //To remove a task
@@ -126,6 +131,14 @@
             return ko.utils.arrayFilter(this.tasks(), function (task) {
                 return task.status() != 3;
             });
+        }, this);
+
+        this.sortFunction = function(left, right) {
+            return left.status() == right.status() ? 0 : (left.status() < right.status() ? -1 : 1);
+        };
+
+        this.sortedTasks = ko.dependentObservable(function() {
+            return this.tasks().slice().sort(this.sortFunction);
         }, this);
 
     }

@@ -3,3 +3,16 @@ body {
   font-family: helvetica;
   color: #111;
   line-height: 1.0; }
+
+form div span, form input, form select, ul.tasks-list li span {
+    display: inline-block;
+    width: 130px; 
+}
+
+form div span.title, form input.title, ul.tasks-list li span.title, ul.tasks-list input.title {
+    width: 170px; 
+}
+
+form div span.description , form input.description, ul.tasks-list li span.description, ul.tasks-list input.description {
+    width: 270px; 
+}
