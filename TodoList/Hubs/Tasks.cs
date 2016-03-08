@@ -2,8 +2,6 @@
 using System;
 using System.Data.Entity.Validation;
 using System.Linq;
-using System.Web.UI.WebControls;
-using System.Xml;
 using TodoList.Models;
 
 namespace TodoList.Hubs
@@ -34,12 +32,12 @@ namespace TodoList.Hubs
             }
             catch (DbEntityValidationException ex)
             {
-                Clients.Caller.reportError("Unable to create task. Make sure title length is between 10 and 140");
+                Clients.Caller.reportError("Error : " + ex.Message);
                 return false;
             }
             catch (Exception ex)
             {
-                Clients.Caller.reportError("Unable to create task. Make sure title length is between 10 and 140");
+                Clients.Caller.reportError("Error : " + ex.Message);
                 return false;
             }
 
@@ -57,22 +55,20 @@ namespace TodoList.Hubs
                 {
                     if (oldTask == null)
                         return false;
-                    else
-                    {
-                        oldTask.title = updatedTask.title;
-                        oldTask.description = updatedTask.description;
-                        oldTask.status = updatedTask.status;
-                        oldTask.createdBy = updatedTask.createdBy;
-                        oldTask.assignedTo = updatedTask.assignedTo;
-                        oldTask.lastUpdated = DateTime.Now;
-                        context.SaveChanges();
-                        Clients.All.taskUpdated(oldTask);
-                        return true;
-                    }
+                    
+                    oldTask.title = updatedTask.title;
+                    oldTask.description = updatedTask.description;
+                    oldTask.status = updatedTask.status;
+                    oldTask.createdBy = updatedTask.createdBy;
+                    oldTask.assignedTo = updatedTask.assignedTo;
+                    oldTask.lastUpdated = DateTime.Now;
+                    context.SaveChanges();
+                    Clients.All.taskUpdated(oldTask);
+                    return true;
                 }
                 catch (Exception ex)
                 {
-                    Clients.Caller.reportError("Unable to update task. Make sure title length is between 10 and 140");
+                    Clients.Caller.reportError("Error : " + ex.Message);
                     return false;
                 }
             }
@@ -90,7 +86,10 @@ namespace TodoList.Hubs
                 using (var context = new TodoListContext())
                 {
                     var task = context.Tasks.FirstOrDefault(t => t.taskId == taskId);
-                    context.Tasks.Remove(task);
+                    if (task == null)
+                        return false;
+
+                    task.deleted = true;
                     context.SaveChanges();
                     Clients.All.taskRemoved(task.taskId);
                     return true;
@@ -110,7 +109,7 @@ namespace TodoList.Hubs
         {
             using (var context = new TodoListContext())
             {
-                var res = context.Tasks.ToArray();
+                var res = context.Tasks.Where(x => x.deleted != true).ToArray();
                 Clients.Caller.taskAll(res);
             }
 

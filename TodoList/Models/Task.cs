@@ -20,6 +20,8 @@ namespace TodoList.Models
         [Required]
         public Status status { get; set; }
 
+        public bool deleted { get; set; }
+
         public int createdBy { get; set; }
 
         public int assignedTo { get; set; }
