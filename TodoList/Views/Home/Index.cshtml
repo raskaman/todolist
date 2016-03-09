@@ -10,84 +10,89 @@
     <script src="~/public/js/tasks.js" type="text/javascript"></script>
 }
 <div id="error" class="validation-summary-errors"></div>
-<h2> Add Task</h2>
 
-<form data-bind="submit: addTask">
-    <div>
-        <span class="title">Title</span>
-        <span class="description">Description</span>
-        <span>Created By</span>
-        <span>Assigned To</span>
-        <span>Status</span>
+<div class="create-task-wrapper">
+    <h2 class="title">Add Task</h2>
+    <form class="input-area" action="" data-bind="submit: addTask">
+        <div class="labels labels--input">
+            <span class="task-title">Title</span>
+            <span class="task-description">Description</span>
+            <span class="task-author">Created By</span>
+            <span class="task-asignee">Asignee</span>
+            <span class="task-status">Status</span>
+        </div>
+
+        <div class="task-inputs">
+            <input type="text" class="task-title-input" data-bind="value: newTaskText" placeholder="Task Title">
+            <input type="text" class="task-description-input" data-bind="value: description" placeholder="Description">
+            <select name="" id="" class="task-author-input" data-bind="value: createdBy">
+                <option value="0">Unknown</option>
+                @foreach (var user in Model)
+                {
+                    <option value="@user.userId">@user.firstName @user.lastName</option>
+                }
+            </select>
+            <select name="" id="" class="task-asignee-input" data-bind="value: assignedTo">
+                <option value="0">Unassingned</option>
+                @foreach (var user in Model)
+                {
+                    <option value="@user.userId">@user.firstName @user.lastName</option>
+                }
+            </select>
+            <select name="" id="" class="task-status-input" data-bind="submit: addTask">
+                <option value="1">To Do</option>
+                <option value="2">In Progress</option>
+                <option value="3">Done</option>
+            </select>
+            <input type="submit" class="task-submit" value="Add Task">
+        </div>
+    </form>
+</div>
+
+<div class="list-task-wrapper" data-bind="visible: tasks().length > 0">
+    <h2 class="title">Task list</h2>
+
+    <br/>
+    You have <b data-bind="text: incompleteTasks().length">&nbsp;</b> incomplete task(s)
+
+    <div class="labels labels--input">
+        <span class="task-title">Title</span>
+        <span class="task-description">Description</span>
+        <span class="task-author">Created By</span>
+        <span class="task-asignee">Asignee</span>
+        <span class="task-status">Status</span>
     </div>
 
-    <input class="title" data-bind="value: newTaskText" placeholder="Task Title"/>
-    <input class="description" data-bind="value: description" placeholder="Description"/>
-    <select data-bind="value: createdBy">
-        <option value="0">Unknown</option>
-        @foreach (var user in Model)
-        {
-            <option value="@user.userId">@user.firstName @user.lastName</option>
-        }
-    </select>
-    <select data-bind="value: assignedTo">
-        <option value="0">Unassingned</option>
-        @foreach (var user in Model)
-        {
-            <option value="@user.userId">@user.firstName @user.lastName</option>
-        }
-    </select>
-    <select data-bind="value: status">
-        <option value="1">To Do</option>
-        <option value="2">In Progress</option>
-        <option value="3">Done</option>
-    </select>
+    <div class="task-list-area">
+        <ul class="task-list">
+            <!-- ko foreach: sortedTasks -->
+            <li class="task-element">
+                <input type="text" class="task-title-input" data-bind="value: title">
+                <input type="text" class="task-description-input" data-bind="value: description">
+                <select name="" id="" class="task-author-input" data-bind="value: createdBy">
+                    <option value="0">Unknown</option>
+                    @foreach (var user in Model)
+                    {
+                        <option value="@user.userId">@user.firstName @user.lastName</option>
+                    }
+                </select>
+                <select name="" id="" class="task-asignee-input" data-bind="value: assignedTo">
+                    <option value="0">Unassingned</option>
+                    @foreach (var user in Model)
+                    {
+                        <option value="@user.userId">@user.firstName @user.lastName</option>
+                    }
+                </select>
+                <select name="" id="" class="task-status-input" data-bind="value: status">
+                    <option value="1">To Do</option>
+                    <option value="2">In Progress</option>
+                    <option value="3">Done</option>
+                </select>
+                <input type="submit" class="task-submit" data-bind="click: remove" value="X">
+            </li>
+            <!-- /ko -->
+        </ul>
 
-    <input type="submit" value="Add Task"/>
-</form>
-
-<h2>Our Tasks</h2>
-<br />
-You have <b data-bind="text: incompleteTasks().length">&nbsp;</b> incomplete task(s)
-
-<ul class="tasks-list" data-bind="visible: tasks().length > 0">
-    <li>
-        <span class="title">Title</span>
-        <span class="description">Description</span>
-        <span>Created By</span>
-        <span>Assigned To</span>
-        <span>Status</span>
-    </li>
-
-    <!-- ko foreach: sortedTasks -->
-    <li style="list-style-image: url('/images/task.png')" data-bind="css: {enabled: status() != 3}">
-        <input class="title" data-bind="value: title" />
-        <input class="description" data-bind="value: description" />
-        <select data-bind="value: createdBy">
-            <option value="0">Unknown</option>
-            @foreach (var user in Model)
-            {
-                <option value="@user.userId">@user.firstName @user.lastName</option>
-            }
-        </select>
-
-        <select data-bind="value: assignedTo">
-            <option value="0">Unassingned</option>
-            @foreach (var user in Model)
-            {
-                <option value="@user.userId">@user.firstName @user.lastName</option>
-            }
-        </select>
-
-        <select data-bind="value: status">
-            <option value="1">To Do</option>
-            <option value="2">In Progress</option>
-            <option value="3">Done</option>
-        </select>
-
-        <input type="button" href="#" data-bind="click: remove" value="x" />
-    </li>
-    <!-- /ko -->
-</ul>
-
-<span data-bind="visible: incompleteTasks().length == 0">All tasks are complete</span>
+    </div>
+    <span data-bind="visible: incompleteTasks().length == 0">All tasks are complete</span>
+</div>

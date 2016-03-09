@@ -7,21 +7,20 @@
     <script src="@Url.Content("~/public/js/libs/jquery-2.2.1.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/public/js/libs/knockout-3.4.0.js")" type="text/javascript"></script>
 
-   @RenderSection("headscript",false)
+    @RenderSection("headscript", false)
 
 </head>
 <body>
-<div class="titlediv">
-    <h1>
-        PAM - Quick Task Reporting!!
-    </h1>
-</div>
+    <div class="todo-wrapper">
+        <h1 class="title1">To Do App Pictet</h1>
 
-<nav>
-    @Html.ActionLink("Tasks", "Index", "Home")
-    @Html.ActionLink("Users", "Users", "Home")
-</nav>
+        <nav>
+            @Html.ActionLink("Tasks", "Index", "Home")
+            @Html.ActionLink("Users", "Users", "Home")
+        </nav>
 
-@RenderBody()
+        @RenderBody()
+
+    </div>
 </body>
 </html>
