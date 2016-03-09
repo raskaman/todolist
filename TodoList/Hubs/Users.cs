@@ -28,7 +28,7 @@ namespace TodoList.Hubs
             }
             catch (Exception ex)
             {
-                Clients.Caller.reportError("Unable to create User: " + ex.Message);
+                Clients.Caller.reportError("Error : " + ex.Message);
                 return false;
             }
 
@@ -59,7 +59,7 @@ namespace TodoList.Hubs
                 }
                 catch (Exception ex)
                 {
-                    Clients.Caller.reportError("Unable to update User: " + ex.Message);
+                    Clients.Caller.reportError("Error : " + ex.Message);
                     return false;
                 }
             }
