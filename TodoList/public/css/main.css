@@ -1,22 +1,108 @@
 body {
-  background: #EEE;
+  background: #F5F5F5;
   font-family: helvetica;
   color: #111;
-  line-height: 1.0; }
+  line-height: 1.0;
+  margin: 0; }
+
+* {
+  list-style: none;
+  box-sizing: border-box; }
 
 span {
+  padding: 20px 0; }
+
+.title1 {
+  padding: 40px 20px;
+  margin: 0 0 20px;
+  background-image: linear-gradient(141deg, #13bfdf 0%, #42afe3 71%, #53a1eb 100%);
+  color: #fff;
+  font-weight: 100; }
+
+.title {
+  margin-bottom: 0;
+  color: #555;
+  font-weight: 100;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #ddd;
+  display: inline-block; }
+
+.create-task-wrapper,
+.list-task-wrapper {
   padding: 20px; }
 
-.heading-description,
-.task-description {
-  width: 20%; }
+.task-inputs * {
+  font-size: 16px; }
 
-.heading-title,
-.heading-createdBy,
-.heading-assignedTo,
-.heading-status,
+.task-list * {
+  font-size: 16px; }
+
 .task-title,
-.task-createdBy,
-.task-assignedTo,
-.task-status {
-  width: 10%; }
+.task-title-input {
+  width: calc( (100% / 12)* 2); }
+
+.task-description,
+.task-description-input {
+  width: calc( (100% / 12)* 4); }
+
+.task-author,
+.task-author-input,
+.task-asignee,
+.task-asignee-input {
+  width: calc( (100% / 12)* 2); }
+
+.task-status,
+.task-status-input {
+  width: calc( (100% / 12)* 1); }
+
+.task-title,
+.task-author,
+.task-asignee,
+.task-status,
+.task-description,
+.task-title-input,
+.task-description-input,
+.task-author-input,
+.task-asignee-input,
+.task-status-input,
+.task-submit {
+  display: inline-block;
+  padding: 5px 10px;
+  color: #555;
+  font-weight: 100; }
+
+.task-title,
+.task-author,
+.task-asignee,
+.task-status,
+.task-description,
+.task-title-input {
+  padding: 5px 0; }
+
+.task-author-input,
+.task-asignee-input,
+.task-status-input {
+  -webkit-appearance: none;
+  border-radius: 0;
+  padding: 6px 10px;
+  border: 1px solid #d3d6db;
+  color: #777;
+  cursor: pointer; }
+
+.task-submit {
+  border: 1px solid #42afe3;
+  background-color: #42afe3;
+  color: #fff;
+  padding: 6px 10px;
+  cursor: pointer; }
+
+.task-list {
+  padding-left: 0;
+  margin: 0; }
+  .task-list .task-element {
+    padding: 10px 0; }
+    .task-list .task-element:first-child {
+      padding-top: 0; }
+
+.labels {
+  padding: 20px 0; }
