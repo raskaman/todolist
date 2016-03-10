@@ -14,9 +14,15 @@
     <div class="todo-wrapper">
         <h1 class="title1">To Do App Pictet</h1>
 
-        <nav>
-            @Html.ActionLink("Tasks", "Index", "Home")
-            @Html.ActionLink("Users", "Users", "Home")
+        <nav class="tabs">
+            <ul class="tabs-routes">
+                <li class="tab-element active">
+                    @Html.ActionLink("Tasks", "Index", "Home")
+                </li>
+                <li class="tab-element">
+                    @Html.ActionLink("Users", "Users", "Home")
+                </li>
+            </ul>
         </nav>
 
         @RenderBody()
