@@ -16,10 +16,10 @@
 
         <nav class="tabs">
             <ul class="tabs-routes">
-                <li class="tab-element active">
+                <li class="tab-element @(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">
                     @Html.ActionLink("Tasks", "Index", "Home")
                 </li>
-                <li class="tab-element">
+                <li class="tab-element @(ViewContext.RouteData.Values["Action"].ToString() == "Users" ? "active" : "")">
                     @Html.ActionLink("Users", "Users", "Home")
                 </li>
             </ul>
