@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<link rel="stylesheet" href="../css/main.css">
@@ -5,6 +6,14 @@
 	<body>
 		<div class="todo-wrapper">
 			<h1 class="title1">To Do App Pictet</h1>
+
+			<div class="tabs">
+				<ul class="tabs-routes">
+					<li class="tab-element active">Tasks</li>
+					<li class="tab-element">Users</li>
+				</ul>
+			</div>
+			
 
 			<div class="create-task-wrapper">
 				<h2 class="title">Add Task</h2>
@@ -71,7 +80,7 @@
 								<option value="dos">In Progress</option>
 								<option value="tres">Done</option>
 							</select>
-							<input type="submit" class="task-submit">
+							<input type="button" class="task-remove" value="x">
 						</li>
 						<li class="task-element">
 							<input type="text" class="task-title-input">
@@ -91,7 +100,7 @@
 								<option value="dos">In Progress</option>
 								<option value="tres">Done</option>
 							</select>
-							<input type="submit" class="task-submit">
+							<input type="button" class="task-remove" value="x">
 						</li>
 						<li class="task-element">
 							<input type="text" class="task-title-input">
@@ -111,7 +120,7 @@
 								<option value="dos">In Progress</option>
 								<option value="tres">Done</option>
 							</select>
-							<input type="submit" class="task-submit">
+							<input type="button" class="task-remove" value="x">
 						</li>
 					</ul>
 				</div>

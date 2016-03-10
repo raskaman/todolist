@@ -29,7 +29,9 @@ span {
 
 .create-task-wrapper,
 .list-task-wrapper {
-  padding: 20px; }
+  padding: 20px;
+  float: left;
+  width: 100%; }
 
 .task-inputs * {
   font-size: 16px; }
@@ -65,7 +67,8 @@ span {
 .task-author-input,
 .task-asignee-input,
 .task-status-input,
-.task-submit {
+.task-submit,
+.task-remove {
   display: inline-block;
   padding: 5px 10px;
   color: #555;
@@ -75,8 +78,7 @@ span {
 .task-author,
 .task-asignee,
 .task-status,
-.task-description,
-.task-title-input {
+.task-description {
   padding: 5px 0; }
 
 .task-author-input,
@@ -96,6 +98,13 @@ span {
   padding: 6px 10px;
   cursor: pointer; }
 
+.task-remove {
+  background-color: #ed6c63;
+  border: 1px solid #ed6c63;
+  color: #fff;
+  padding: 6px 10px;
+  cursor: pointer; }
+
 .task-list {
   padding-left: 0;
   margin: 0; }
@@ -106,3 +115,30 @@ span {
 
 .labels {
   padding: 20px 0; }
+
+.tabs {
+  width: 100%;
+  float: left;
+  border-bottom: 1px solid #ddd; }
+  .tabs .tabs-routes {
+    padding-left: 20px;
+    margin: 0;
+    float: left;
+    margin-bottom: -1px; }
+    .tabs .tabs-routes .tab-element {
+      float: left;
+      width: auto;
+      padding: 20px 30px;
+      border: 1px solid #ddd;
+      border-bottom: 1px solid transparent;
+      background-color: #ddd;
+      color: #BBB;
+      margin-right: 10px;
+      font-weight: 100; }
+      .tabs .tabs-routes .tab-element.active {
+        background-color: #F5F5F5;
+        color: #555; }
+        .tabs .tabs-routes .tab-element.active:hover {
+          cursor: default; }
+      .tabs .tabs-routes .tab-element:hover {
+        cursor: pointer; }
