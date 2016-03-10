@@ -12,14 +12,14 @@
 </head>
 <body>
     <div class="todo-wrapper">
-        <h1 class="title1">To Do App Pictet</h1>
+        <h1 class="title1">Pictet - To Do App - Quick Task Reporting</h1>
 
         <nav class="tabs">
             <ul class="tabs-routes">
-                <li class="tab-element active">
+                <li class="tab-element @(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">
                     @Html.ActionLink("Tasks", "Index", "Home")
                 </li>
-                <li class="tab-element">
+                <li class="tab-element @(ViewContext.RouteData.Values["Action"].ToString() == "Users" ? "active" : "")">
                     @Html.ActionLink("Users", "Users", "Home")
                 </li>
             </ul>
