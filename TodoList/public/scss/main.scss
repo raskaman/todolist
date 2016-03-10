@@ -81,7 +81,8 @@ span {
 .task-author-input,
 .task-asignee-input,
 .task-status-input,
-.task-submit {
+.task-submit,
+.task-remove {
     display: inline-block;
     padding: 5px 10px;
     color: #555;
@@ -111,6 +112,14 @@ span {
 .task-submit {
     border: 1px solid #42afe3;
     background-color: #42afe3;
+    color: #fff;
+    padding: 6px 10px;
+    cursor: pointer;
+}
+
+.task-remove {
+    background-color: #ed6c63;
+    border: 1px solid #ed6c63;
     color: #fff;
     padding: 6px 10px;
     cursor: pointer;
