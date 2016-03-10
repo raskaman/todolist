@@ -9,11 +9,14 @@
 
 			<div class="tabs">
 				<ul class="tabs-routes">
-					<li class="tab-element active">Tasks</li>
-					<li class="tab-element">Users</li>
+					<li class="tab-element active">
+						<a href="">Tasks</a></li>
+					<li class="tab-element">
+						<a href="">Users</a>
+					</li>
 				</ul>
 			</div>
-			
+
 
 			<div class="create-task-wrapper">
 				<h2 class="title">Add Task</h2>
@@ -51,6 +54,10 @@
 
 			<div class="list-task-wrapper">
 				<h2 class="title">Task list</h2>
+
+				<div class="summary">
+					<span class="summary-text">You have <span class="summary-number">20</span> incomplete tasks</span>
+				</div>
 
 				<div class="labels labels--input">
 					<span class="task-title">Title</span>
@@ -104,6 +111,28 @@
 						</li>
 						<li class="task-element">
 							<input type="text" class="task-title-input">
+							<input type="text" class="task-description-input">
+							<select name="" id="" class="task-author-input">
+								<option value="uno">Uno</option>
+								<option value="dos">Dos</option>
+								<option value="tres">Tres</option>
+							</select>
+							<select name="" id="" class="task-asignee-input">
+								<option value="uno">Uno</option>
+								<option value="dos">Dos</option>
+								<option value="tres">Tres</option>
+							</select>
+							<select name="" id="" class="task-status-input">
+								<option value="uno">To Do</option>
+								<option value="dos">In Progress</option>
+								<option value="tres">Done</option>
+							</select>
+							<input type="button" class="task-remove" value="x">
+						</li>
+
+						<li class="task-element">
+							<input type="checkbox" id="checkbox1" class="task-title-checkbox">
+							<label class="task-title-checkbox_label" for="checkbox1"></label>
 							<input type="text" class="task-description-input">
 							<select name="" id="" class="task-author-input">
 								<option value="uno">Uno</option>

@@ -52,8 +52,9 @@
 <div class="list-task-wrapper" data-bind="visible: tasks().length > 0">
     <h2 class="title">Task list</h2>
 
-    <br/>
-    You have <b data-bind="text: incompleteTasks().length">&nbsp;</b> incomplete task(s)
+    <div class="summary">
+        <span class="summary-text">You have <span class="summary-number" data-bind="text: incompleteTasks().length">&nbsp;</span> incomplete task(s)</span>
+    </div>
 
     <div class="labels labels--input">
         <span class="task-title">Title</span>

@@ -89,6 +89,7 @@ span {
     padding: 5px 10px;
     color: #555;
     font-weight: 100;
+    vertical-align: middle;
 }
 
 .task-title,
@@ -157,17 +158,25 @@ span {
         .tab-element {
             float: left;
             width: auto;
-            padding: 20px 30px;
             border: 1px solid #ddd;
-            border-bottom: 1px solid transparent;
             background-color: #ddd;
-            color: #BBB;
             margin-right: 10px;
             font-weight: 100;
 
+            a {
+                padding: 20px 30px;
+                float: left;
+                color: #BBB;
+                text-decoration: none;
+            }
+
             &.active {
-                background-color: #F5F5F5;
-                color: #555;
+                border-bottom: 1px solid #F5F5F5;
+
+                a {
+                    background-color: #F5F5F5;
+                    color: #555;
+                }
 
                 &:hover {
                     cursor: default;
@@ -178,5 +187,53 @@ span {
                 cursor: pointer;
             }
         }
+    }
+}
+
+.summary {
+    width: 100%;
+    float: left;
+    padding: 20px 0;
+
+    .summary-text {
+        color: #555;
+        font-weight: 100;
+        padding: 0;
+
+        .summary-number {
+            font-weight: 400;
+        }
+    }
+}
+
+.task-title-checkbox {
+    display: none;
+
+    &:checked {
+        & + label {
+            &:before {
+                background-color: #42afe3;
+            }
+        }
+    }
+}
+
+.task-title-checkbox_label {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #ddd;
+    display: block;
+    float: left;
+    background-color: #fff;
+    margin-right: 34px;
+    position: relative;
+
+    &:before {
+        position: absolute;
+        left: 5px;
+        top: 5px;
+        content: '';
+        width: 20px;
+        height: 20px;
     }
 }
