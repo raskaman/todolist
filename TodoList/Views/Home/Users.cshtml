@@ -30,27 +30,28 @@
 <div class="list-task-wrapper" data-bind="visible: users().length > 0">
     <h2 class="title">User list</h2>
 
-    <br />
-    You have <b data-bind="text: activeUsers().length">&nbsp;</b> inactive user(s)
-
-    <div class="labels labels--input">
-        <span class="task-title">Active</span>
-        <span class="task-title">First Name</span>
-        <span class="task-title">Last Name</span>
-    </div>
-
-    <div class="task-list-area">
-        <ul class="task-list">
-            <!-- ko foreach: users -->
-            <li class="task-element">
-                <input type="checkbox" id="cb1" class="task-title-input" data-bind="checked: active" />
-                <label class="task-title-checkbox_label" for="cb1"></label>
-                <input type="text" class="task-title-input" data-bind="value: firstName">
-                <input type="text" class="task-title-input" data-bind="value: lastName">
-                <input class="task-remove" type="button" href="#" data-bind="click: remove" value="X" />
-            </li>
-            <!-- /ko -->
-        </ul>
-
-    </div>
+    <div class="summary">
+        <span class="summary-text">You have <span class="summary-number" data-bind="text: activeUsers().length">&nbsp;</span> inactive user(s)</span>
 </div>
+
+        <div class="labels labels--input">
+            <span class="task-title">Active</span>
+            <span class="task-title">First Name</span>
+            <span class="task-title">Last Name</span>
+        </div>
+
+        <div class="task-list-area">
+            <ul class="task-list">
+                <!-- ko foreach: users -->
+                <li class="task-element">
+                    <input type="checkbox" class="task-title-input" data-bind="checked: active, attr: { id: 'cb_' + $index() }" />
+                    <label class="task-title-checkbox_label" data-bind="attr: { for: 'cb_' + $index() }"></label>
+                    <input type="text" class="task-title-input" data-bind="value: firstName">
+                    <input type="text" class="task-title-input" data-bind="value: lastName">
+                    <input class="task-remove" type="button" href="#" data-bind="click: remove" value="X" />
+                </li>
+                <!-- /ko -->
+            </ul>
+
+        </div>
+    </div>
