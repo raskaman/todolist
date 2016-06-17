@@ -44,7 +44,7 @@
             <ul class="task-list">
                 <!-- ko foreach: users -->
                 <li class="task-element">
-                    <input type="checkbox" class="task-title-input" data-bind="checked: active, attr: { id: 'cb_' + $index() }" />
+                    <input type="checkbox" class="task-title-checkbox" data-bind="checked: active, attr: { id: 'cb_' + $index() }" />
                     <label class="task-title-checkbox_label" data-bind="attr: { for: 'cb_' + $index() }"></label>
                     <input type="text" class="task-title-input" data-bind="value: firstName">
                     <input type="text" class="task-title-input" data-bind="value: lastName">
